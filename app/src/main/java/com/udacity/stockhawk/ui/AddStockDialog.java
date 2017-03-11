@@ -73,5 +73,4 @@ public class AddStockDialog extends DialogFragment {
         dismissAllowingStateLoss();
     }
 
-
 }

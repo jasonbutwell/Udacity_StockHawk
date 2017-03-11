@@ -9,8 +9,8 @@ import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.preference.PreferenceManager;
-import android.util.Log;
 
+import com.udacity.stockhawk.R;
 import com.udacity.stockhawk.data.Contract;
 import com.udacity.stockhawk.data.PrefUtils;
 
@@ -39,7 +39,6 @@ public final class QuoteSyncJob {
     private static final int PERIODIC_ID = 1;
     private static final int YEARS_OF_HISTORY = 2;
 
-    private static final String BADSYMBOLS_ID = "badStockErrors";
     private static int badSymbols = 0;
 
     private QuoteSyncJob() {
@@ -128,10 +127,8 @@ public final class QuoteSyncJob {
                 }
         }
 
-            Log.i("BADSYM",badSymbols+"");
-
             // use shared preferences to store our bad stocks count
-            PreferenceManager.getDefaultSharedPreferences(context).edit().putInt(BADSYMBOLS_ID, badSymbols ).apply();
+            PreferenceManager.getDefaultSharedPreferences(context).edit().putInt(context.getString(R.string.pref_bad_stock_key), badSymbols ).apply();
 
             context.getContentResolver()
                     .bulkInsert(

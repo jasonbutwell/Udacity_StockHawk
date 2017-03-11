@@ -1,6 +1,7 @@
 package com.udacity.stockhawk.ui;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.net.ConnectivityManager;
@@ -46,9 +47,18 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     TextView error;
     private StockAdapter adapter;
 
+    // Modified to pass history as well as the symbol
+
     @Override
-    public void onClick(String symbol) {
+    public void onClick(String symbol, String history) {
         Timber.d("Symbol clicked: %s", symbol);
+
+        // Passes symbol and history to StockDetailActivity via Intent
+        
+        startActivity( new Intent( this, StockDetailActivity.class )
+                .putExtra( "symbol" ,symbol )
+                .putExtra( "history" ,history )
+        );
     }
 
     @Override
@@ -83,7 +93,10 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
             }
         }).attachToRecyclerView(stockRecyclerView);
 
-
+        if ( !networkUp() ) {
+            error.setText(getString(R.string.error_no_network));
+            error.setVisibility(View.VISIBLE);
+        }
     }
 
     private boolean networkUp() {
@@ -146,25 +159,25 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
         swipeRefreshLayout.setRefreshing(false);
 
-        if (data.getCount() != 0) {
+        if (data.getCount() != 0)
             error.setVisibility(View.GONE);
-        }
+
         adapter.setCursor(data);
 
         // get preferences and error pref we set
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
         SharedPreferences.Editor edit = prefs.edit();
-        int value = prefs.getInt("badStockErrors", -1);
+        int value = prefs.getInt(getString(R.string.pref_bad_stock_key), -1);
 
         // if this value is above 0 there was an error when retrieving the stocks
         if ( value > 0 ) {
             String message = "Invalid stock symbol(s). Not added";
             // display a toast message to say there was an error
             Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
-            edit.remove("badStockErrors").apply();  // remove the shared preference
+            edit.remove(getString(R.string.pref_bad_stock_key)).apply();  // remove the shared preference
         }
     }
-    
+
     @Override
     public void onLoaderReset(Loader<Cursor> loader) {
         swipeRefreshLayout.setRefreshing(false);

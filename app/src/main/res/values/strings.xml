@@ -5,6 +5,8 @@
 
     <string name="pref_stocks_key">stocks</string>
 
+    <string name="pref_bad_stock_key" translatable="false">badStockErrors</string>
+
 
     <string name="pref_display_mode_key">displayMode</string>
     <string name="pref_display_mode_default">@string/pref_display_mode_percentage_key</string>

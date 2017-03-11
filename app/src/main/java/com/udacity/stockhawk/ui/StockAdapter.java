@@ -66,7 +66,6 @@ class StockAdapter extends RecyclerView.Adapter<StockAdapter.StockViewHolder> {
 
         cursor.moveToPosition(position);
 
-
         holder.symbol.setText(cursor.getString(Contract.Quote.POSITION_SYMBOL));
         holder.price.setText(dollarFormat.format(cursor.getFloat(Contract.Quote.POSITION_PRICE)));
 
@@ -89,8 +88,6 @@ class StockAdapter extends RecyclerView.Adapter<StockAdapter.StockViewHolder> {
         } else {
             holder.change.setText(percentage);
         }
-
-
     }
 
     @Override
@@ -102,9 +99,10 @@ class StockAdapter extends RecyclerView.Adapter<StockAdapter.StockViewHolder> {
         return count;
     }
 
+    // Modified to pass history as well as the symbol
 
     interface StockAdapterOnClickHandler {
-        void onClick(String symbol);
+        void onClick(String symbol, String history);
     }
 
     class StockViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
@@ -124,15 +122,14 @@ class StockAdapter extends RecyclerView.Adapter<StockAdapter.StockViewHolder> {
             itemView.setOnClickListener(this);
         }
 
+        // Modified to pass history as well as the symbol
+
         @Override
         public void onClick(View v) {
             int adapterPosition = getAdapterPosition();
             cursor.moveToPosition(adapterPosition);
             int symbolColumn = cursor.getColumnIndex(Contract.Quote.COLUMN_SYMBOL);
-            clickHandler.onClick(cursor.getString(symbolColumn));
-
+            clickHandler.onClick(cursor.getString(symbolColumn), cursor.getString(Contract.Quote.POSITION_HISTORY));
         }
-
-
     }
 }
