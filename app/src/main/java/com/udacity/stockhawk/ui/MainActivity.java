@@ -1,10 +1,12 @@
 package com.udacity.stockhawk.ui;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
@@ -110,6 +112,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         } else {
             error.setVisibility(View.GONE);
         }
+
     }
 
     public void button(@SuppressWarnings("UnusedParameters") View view) {
@@ -126,8 +129,8 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
                 Toast.makeText(this, message, Toast.LENGTH_LONG).show();
             }
 
-            PrefUtils.addStock(this, symbol);
-            QuoteSyncJob.syncImmediately(this);
+           PrefUtils.addStock(this, symbol);
+           QuoteSyncJob.syncImmediately(this);
         }
     }
 
@@ -147,9 +150,21 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
             error.setVisibility(View.GONE);
         }
         adapter.setCursor(data);
+
+        // get preferences and error pref we set
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        SharedPreferences.Editor edit = prefs.edit();
+        int value = prefs.getInt("badStockErrors", -1);
+
+        // if this value is above 0 there was an error when retrieving the stocks
+        if ( value > 0 ) {
+            String message = "Invalid stock symbol(s). Not added";
+            // display a toast message to say there was an error
+            Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
+            edit.remove("badStockErrors").apply();  // remove the shared preference
+        }
     }
-
-
+    
     @Override
     public void onLoaderReset(Loader<Cursor> loader) {
         swipeRefreshLayout.setRefreshing(false);
