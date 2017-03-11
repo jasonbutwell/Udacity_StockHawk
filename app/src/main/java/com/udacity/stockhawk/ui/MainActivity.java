@@ -54,7 +54,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         Timber.d("Symbol clicked: %s", symbol);
 
         // Passes symbol and history to StockDetailActivity via Intent
-        
+
         startActivity( new Intent( this, StockDetailActivity.class )
                 .putExtra( "symbol" ,symbol )
                 .putExtra( "history" ,history )
@@ -171,9 +171,8 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
 
         // if this value is above 0 there was an error when retrieving the stocks
         if ( value > 0 ) {
-            String message = "Invalid stock symbol(s). Not added";
             // display a toast message to say there was an error
-            Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), getString(R.string.error_invalid_stock), Toast.LENGTH_SHORT).show();
             edit.remove(getString(R.string.pref_bad_stock_key)).apply();  // remove the shared preference
         }
     }
