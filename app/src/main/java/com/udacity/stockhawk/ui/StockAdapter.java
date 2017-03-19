@@ -93,9 +93,9 @@ class StockAdapter extends RecyclerView.Adapter<StockAdapter.StockViewHolder> {
     @Override
     public int getItemCount() {
         int count = 0;
-        if (cursor != null) {
+        if (cursor != null)
             count = cursor.getCount();
-        }
+
         return count;
     }
 
