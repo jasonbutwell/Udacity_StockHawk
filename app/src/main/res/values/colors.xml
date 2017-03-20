@@ -8,4 +8,7 @@
     <color name="material_red_700">#D50000</color>
     <color name="material_green_700">#00C853</color>
 
+    <color name="stock_price_up">@color/material_green_700</color>
+    <color name="stock_price_down">@color/material_red_700</color>
+
 </resources>

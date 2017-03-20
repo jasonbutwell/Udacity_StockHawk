@@ -17,7 +17,7 @@ import com.udacity.stockhawk.ui.StockDetailActivity;
 
 public class WidgetProvider extends AppWidgetProvider {
 
-    public static String EXTRA_WORD = "_THE_WORD";
+    public static String EXTRA_HISTORY = "_HISTORY";
 
     @Override
     public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
@@ -30,12 +30,12 @@ public class WidgetProvider extends AppWidgetProvider {
             svcIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId);
             svcIntent.setData(Uri.parse(svcIntent.toUri(Intent.URI_INTENT_SCHEME)));
 
-            widgetViews.setRemoteAdapter(R.id.words, svcIntent);
+            widgetViews.setRemoteAdapter(R.id.listView, svcIntent);
 
             Intent clickIntent = new Intent(context, StockDetailActivity.class);
             PendingIntent clickPI = PendingIntent.getActivity(context, 0, clickIntent, PendingIntent.FLAG_UPDATE_CURRENT);
 
-            widgetViews.setPendingIntentTemplate(R.id.words, clickPI);
+            widgetViews.setPendingIntentTemplate(R.id.listView, clickPI);
 
             appWidgetManager.updateAppWidget(appWidgetId, widgetViews);
         }

@@ -13,6 +13,10 @@ public final class Contract {
     static final String PATH_QUOTE_WITH_SYMBOL = "quote/*";
     private static final Uri BASE_URI = Uri.parse("content://" + AUTHORITY);
 
+    // Ascending / Descending for sort ORDER
+    public static final String SORTORDER_ASCENDING = " ASC";
+    public static final String SORTORDER_DESCENDING = " DESC";
+
     private Contract() {
     }
 
