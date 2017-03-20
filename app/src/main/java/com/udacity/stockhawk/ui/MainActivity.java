@@ -56,9 +56,6 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
 
         // Passes symbol and history to StockDetailActivity via Intent
 
-        // The Activity we want to call
-        Intent stockDetailIntent = new Intent( this, StockDetailActivity.class );
-
         // Create a new bundle
         Bundle extras = new Bundle();
 
@@ -66,8 +63,10 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         extras.putString(WidgetProvider.EXTRA_SYMBOL, symbol);
         extras.putString(WidgetProvider.EXTRA_HISTORY, history);
 
-        // add the extras bundle into the intent
-        stockDetailIntent.putExtras(extras);
+        // The Activity we want to call
+        // + add the extras bundle into the intent
+        Intent stockDetailIntent = new Intent( this, StockDetailActivity.class )
+                .putExtras(extras);
 
         // call the activity via it's intent
         startActivity( stockDetailIntent );
@@ -137,7 +136,6 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         } else {
             error.setVisibility(View.GONE);
         }
-
     }
 
     public void button(@SuppressWarnings("UnusedParameters") View view) {
@@ -187,6 +185,9 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
             Toast.makeText(getApplicationContext(), getString(R.string.error_invalid_stock), Toast.LENGTH_SHORT).show();
             edit.remove(getString(R.string.pref_bad_stock_key)).apply();  // remove the shared preference
         }
+
+        // Send update broadcast to update the widget
+        sendBroadcast(new Intent("android.appwidget.action.APPWIDGET_UPDATE"));
     }
 
     @Override
@@ -194,7 +195,6 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         swipeRefreshLayout.setRefreshing(false);
         adapter.setCursor(null);
     }
-
 
     private void setDisplayModeMenuItemIcon(MenuItem item) {
         if (PrefUtils.getDisplayMode(this)

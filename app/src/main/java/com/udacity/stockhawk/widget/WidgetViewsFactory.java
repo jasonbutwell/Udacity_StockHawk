@@ -114,8 +114,10 @@ public class WidgetViewsFactory implements RemoteViewsService.RemoteViewsFactory
     @Override
     public void onDestroy() {
         // Releases the cursor when we are done with it
-        if ( cursor != null )
+        if ( cursor != null ) {
             cursor.close();
+            cursor = null;
+        }
     }
 
     @Override
