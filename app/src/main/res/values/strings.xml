@@ -36,4 +36,7 @@
 
     <string name="label_widget_nostocks">No stocks added</string>
 
+    <string name="label_chart_stock_price">Stock Price over time (Descending)</string>
+    <string name="legend_chart_stock_price">Stock Price</string>
+
 </resources>
