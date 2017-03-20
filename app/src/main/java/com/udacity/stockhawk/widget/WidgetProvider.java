@@ -17,6 +17,7 @@ import com.udacity.stockhawk.ui.StockDetailActivity;
 
 public class WidgetProvider extends AppWidgetProvider {
 
+    public static String EXTRA_SYMBOL  = "_SYMBOL";
     public static String EXTRA_HISTORY = "_HISTORY";
 
     @Override

@@ -26,6 +26,7 @@ import com.udacity.stockhawk.R;
 import com.udacity.stockhawk.data.Contract;
 import com.udacity.stockhawk.data.PrefUtils;
 import com.udacity.stockhawk.sync.QuoteSyncJob;
+import com.udacity.stockhawk.widget.WidgetProvider;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -55,10 +56,21 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
 
         // Passes symbol and history to StockDetailActivity via Intent
 
-        startActivity( new Intent( this, StockDetailActivity.class )
-                .putExtra( "symbol" ,symbol )
-                .putExtra( "history" ,history )
-        );
+        // The Activity we want to call
+        Intent stockDetailIntent = new Intent( this, StockDetailActivity.class );
+
+        // Create a new bundle
+        Bundle extras = new Bundle();
+
+        // Place the Symbol and history information into the bundle
+        extras.putString(WidgetProvider.EXTRA_SYMBOL, symbol);
+        extras.putString(WidgetProvider.EXTRA_HISTORY, history);
+
+        // add the extras bundle into the intent
+        stockDetailIntent.putExtras(extras);
+
+        // call the activity via it's intent
+        startActivity( stockDetailIntent );
     }
 
     @Override
