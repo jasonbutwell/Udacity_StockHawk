@@ -162,7 +162,8 @@ public class WidgetViewsFactory implements RemoteViewsService.RemoteViewsFactory
         Intent intent = new Intent();
         Bundle extras = new Bundle();
 
-        // Pass in the History information here into the Bundle
+        // Pass in the Symbol and History information here into the Bundle
+        extras.putString(WidgetProvider.EXTRA_SYMBOL, symbol);
         extras.putString(WidgetProvider.EXTRA_HISTORY, history);
 
         // Put the extras into the intent
