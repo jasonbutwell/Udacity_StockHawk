@@ -3,4 +3,6 @@
 
     <dimen name="list_item_padding_left">16dp</dimen>
     <dimen name="list_item_padding_right">16dp</dimen>
+
+    <dimen name="widget_margin">3dp</dimen>
 </resources>

@@ -33,6 +33,7 @@ public class WidgetProvider extends AppWidgetProvider {
             widgetViews.setRemoteAdapter(R.id.listView, svcIntent);
 
             Intent clickIntent = new Intent(context, StockDetailActivity.class);
+
             PendingIntent clickPI = PendingIntent.getActivity(context, 0, clickIntent, PendingIntent.FLAG_UPDATE_CURRENT);
 
             widgetViews.setPendingIntentTemplate(R.id.listView, clickPI);
