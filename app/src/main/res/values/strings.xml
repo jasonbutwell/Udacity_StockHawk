@@ -38,5 +38,6 @@
 
     <string name="label_chart_stock_price">Stock Price over time (Descending)</string>
     <string name="legend_chart_stock_price">Stock Price</string>
+    <string name="widget_title">StockHawk</string>
 
 </resources>

@@ -10,6 +10,7 @@ import android.net.Uri;
 import android.widget.RemoteViews;
 
 import com.udacity.stockhawk.R;
+import com.udacity.stockhawk.ui.MainActivity;
 import com.udacity.stockhawk.ui.StockDetailActivity;
 
 /**
@@ -55,10 +56,15 @@ public class WidgetProvider extends AppWidgetProvider {
             widgetViews.setRemoteAdapter(R.id.listView, svcIntent);
             widgetViews.setEmptyView(R.id.listView, R.id.listViewEmpty);
 
+            // We have added the ability to launch the Stock Hawk app if the widget title bar is clicked
+
+            Intent clickAppIntent = new Intent(context, MainActivity.class);
             Intent clickIntent = new Intent(context, StockDetailActivity.class);
 
+            PendingIntent appPI = PendingIntent.getActivity(context, 0, clickAppIntent, PendingIntent.FLAG_UPDATE_CURRENT);
             PendingIntent clickPI = PendingIntent.getActivity(context, 0, clickIntent, PendingIntent.FLAG_UPDATE_CURRENT);
 
+            widgetViews.setOnClickPendingIntent(R.id.StockHawkTitle,appPI);
             widgetViews.setPendingIntentTemplate(R.id.listView, clickPI);
 
             appWidgetManager.updateAppWidget(appWidgetId, widgetViews);
