@@ -7,7 +7,6 @@
 
     <string name="pref_bad_stock_key" translatable="false">badStockErrors</string>
 
-
     <string name="pref_display_mode_key" translatable="false">displayMode</string>
     <string name="pref_display_mode_default" translatable="false">@string/pref_display_mode_percentage_key</string>
 
@@ -21,8 +20,8 @@
 
     <string name="action_change_units" translatable="false">@string/pref_display_mode_key</string>
 
-    <string name="dialog_title">Add Stock</string>
-    <string name="dialog_hint">Symbol (e.g. GOOG)</string>
+    <string name="dialog_title">Add New Stock</string>
+    <string name="dialog_hint">Enter Symbol (e.g. GOOG)</string>
     <string name="dialog_cancel">Cancel</string>
     <string name="dialog_add">Add</string>
 
@@ -36,10 +35,13 @@
 
     <string name="label_widget_nostocks">No stocks added</string>
 
-    <string name="label_chart_stock_price">Stock Price over time (Descending)</string>
-    <string name="legend_chart_stock_price">Stock Price</string>
-    <string name="widget_title">StockHawk</string>
+    <string name="label_chart_stock_price">Stock price over time (Date descending)</string>
+    <string name="legend_chart_stock_price">Stock price</string>
+    <string name="widget_title">@string/app_name</string>
 
     <string name="currency_symbol">$</string>
+
+    <string name="CD_add_new_stock_symbol">Add new stock symbol</string>
+    <string name="CD_convert_units_between_dollar_and_percentage">Convert units between dollar and percentage</string>
 
 </resources>

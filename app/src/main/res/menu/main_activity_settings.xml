@@ -7,6 +7,6 @@
         android:icon="@drawable/ic_dollar"
         android:orderInCategory="99"
         android:title="@string/action_change_units"
-        app:showAsAction="always" />
-
+        app:showAsAction="always"
+        android:contentDescription="@string/CD_convert_units_between_dollar_and_percentage" />
 </menu>

@@ -129,7 +129,7 @@ public class WidgetViewsFactory implements RemoteViewsService.RemoteViewsFactory
     @Override
     public RemoteViews getViewAt(int position) {
 
-        String currencySymbol = context.getResources().getString(R.string.currency_symbol) + " ";
+        String currencySymbol = context.getResources().getString(R.string.currency_symbol);
 
         // Check we have data at this view position - If we don't then exit with null
         if ( !cursor.moveToPosition(position) )
