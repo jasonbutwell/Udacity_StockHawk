@@ -10,3 +10,6 @@ If you're a Nanodegree student check your work againt the project [rubric](https
 
 Pull requests gratefully accepted.
 # Stock Hawk - Udacity Android project 3
+
+Youtube video:
+https://www.youtube.com/watch?v=AaeUAkP1aVg
