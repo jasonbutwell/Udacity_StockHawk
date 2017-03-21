@@ -129,10 +129,10 @@ public class WidgetViewsFactory implements RemoteViewsService.RemoteViewsFactory
     @Override
     public RemoteViews getViewAt(int position) {
 
-        String currencySymbolUS = "$ ";
+        String currencySymbol = context.getResources().getString(R.string.currency_symbol) + " ";
 
         // Check we have data at this view position - If we don't then exit with null
-        if (!cursor.moveToPosition(position))
+        if ( !cursor.moveToPosition(position) )
             return null;
 
         // Grab the Symbol, price and percentage change from the cursor
@@ -154,7 +154,7 @@ public class WidgetViewsFactory implements RemoteViewsService.RemoteViewsFactory
 
         // Set the view fields to the data obtained from the Cursor
         row.setTextViewText(R.id.symbol, symbol);
-        row.setTextViewText(R.id.price, currencySymbolUS + price);
+        row.setTextViewText(R.id.price, currencySymbol + price);
         row.setTextViewText(R.id.change, adjustPercentageString( newPercent ));
 
         // Set the percent change background depending on + or -

@@ -58,18 +58,17 @@ public class AddStockDialog extends DialogFragment {
         Dialog dialog = builder.create();
 
         Window window = dialog.getWindow();
-        if (window != null) {
+        if (window != null)
             window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
-        }
 
         return dialog;
     }
 
     private void addStock() {
         Activity parent = getActivity();
-        if (parent instanceof MainActivity) {
+        if (parent instanceof MainActivity)
             ((MainActivity) parent).addStock(stock.getText().toString());
-        }
+
         dismissAllowingStateLoss();
     }
 

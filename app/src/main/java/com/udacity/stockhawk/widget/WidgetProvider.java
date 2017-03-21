@@ -22,13 +22,15 @@ public class WidgetProvider extends AppWidgetProvider {
     public static String EXTRA_SYMBOL  = "_SYMBOL";
     public static String EXTRA_HISTORY = "_HISTORY";
 
+    public static String ACTION_UPDATE = "android.appwidget.action.APPWIDGET_UPDATE";
+
     @Override
     public void onReceive(Context context, Intent intent) {
         super.onReceive(context, intent);
 
         int[] appWidgetIDs;
 
-        if ( intent.getAction().equals("android.appwidget.action.APPWIDGET_UPDATE") ) {
+        if ( intent.getAction().equals(ACTION_UPDATE) ) {
 
             // Debugging
             //Log.i("WIDGETUPDATE","UPDATED!");

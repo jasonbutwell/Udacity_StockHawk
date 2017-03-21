@@ -3,15 +3,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_height="match_parent"
     android:layout_width="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@android:color/black">
     <TextView
         android:id="@+id/StockHawkTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         tools:text="StockHawk"
         android:text="@string/widget_title"
-        style="@style/StockHawkWidgetHeaderStyle"
-        />
+        style="@style/StockHawkWidgetHeaderStyle" />
     <ListView
         android:id="@+id/listView"
         android:layout_width="match_parent"

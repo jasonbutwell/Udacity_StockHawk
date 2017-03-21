@@ -46,7 +46,7 @@ public final class QuoteSyncJob {
 
     static void getQuotes(final Context context) {
 
-        Timber.d("Running sync job");
+        //Timber.d("Running sync job");
 
         Calendar from = Calendar.getInstance();
         Calendar to = Calendar.getInstance();
@@ -61,16 +61,15 @@ public final class QuoteSyncJob {
             stockCopy.addAll(stockPref);
             String[] stockArray = stockPref.toArray(new String[stockPref.size()]);
 
-            Timber.d(stockCopy.toString());
+            //Timber.d(stockCopy.toString());
 
-            if (stockArray.length == 0) {
+            if (stockArray.length == 0)
                 return;
-            }
 
             Map<String, Stock> quotes = YahooFinance.get(stockArray);
             Iterator<String> iterator = stockCopy.iterator();
 
-            Timber.d(quotes.toString());
+            //Timber.d(quotes.toString());
 
             ArrayList<ContentValues> quoteCVs = new ArrayList<>();
 
@@ -87,8 +86,6 @@ public final class QuoteSyncJob {
                 }catch (NullPointerException e) {
                     e.printStackTrace();
                 }
-
-                // TODO : ERROR CASE - This check will stop the app from crashing if a symbol is not found - we cannot send a Toast within a service
 
                 // If everything checks out and stock symbol ok then iterate
                 if ( stock != null && quote.getAsk() != null && quote.getPrice() != null && quote.getBid() != null && quote.getPreviousClose() != null)
@@ -188,8 +185,6 @@ public final class QuoteSyncJob {
             JobScheduler scheduler = (JobScheduler) context.getSystemService(Context.JOB_SCHEDULER_SERVICE);
 
             scheduler.schedule(builder.build());
-
-
         }
     }
 

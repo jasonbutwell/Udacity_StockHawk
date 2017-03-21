@@ -40,4 +40,6 @@
     <string name="legend_chart_stock_price">Stock Price</string>
     <string name="widget_title">StockHawk</string>
 
+    <string name="currency_symbol">$</string>
+
 </resources>

@@ -6,4 +6,5 @@
     android:updatePeriodMillis="18000000"
     android:initialLayout="@layout/widget"
     android:autoAdvanceViewId="@+id/stockWidget"
-    android:resizeMode="horizontal|vertical" />
+    android:resizeMode="horizontal|vertical"
+    android:previewImage="@drawable/widgetpreview" />
